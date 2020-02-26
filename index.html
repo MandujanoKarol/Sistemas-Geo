@@ -5,23 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SISTEMAS GEO 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        body {
+            background-color:#808B96;
+        }   
+
+        .letra{
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 30px;
+            font-weight: bold; 
+            margin-left: 20px;
+        }
+        .img{
+            vertical-align: middle;
+        }
+        h1{
+            text-align: center;
+            font-weight: bold;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Hola soy Karol</h1>
+    <nav style="background-color: #AF7AC5; height: 70px;">
+         <img style='width: 180px; height:50px; margin-left: 20px; margin-top: 10px;' src="imagenes/delasalle_Color.png" class="img">
+
+    </nav>
+
+    <div class="container-fluid">
+        <div class="container bg-white rounded shadow-lg">
+            <div class="row m-5">
+                <div class="col-12 p-5">
+
+    <h1>¡Hola soy Karol!</h1>
     <ul>
-        <li><a href="practica1.html">ir a mapa</a></li>
+        
+        <li><img style='width: 80px; height:80px;' src="imagenes/mapa.png" class="img"><a href="practica1.html" class="letra">ir a mapa</a></li> 
     </ul>
     <ul>
-        <li><a href="practica2.html">ir a información del navegador</a></li>
+        <li><img style='width: 80px; height:80px;' src="imagenes/chrome.png" class="img"><a href="practica2.html" class="letra">ir a información del navegador</a></li>
     </ul>
     <ul>
-        <li><a href="practica3.html">ir a coordenadas</a></li>
+        <li><img style='width: 80px; height:80px;' src="imagenes/coord.png" class="img"><a href="practica3.html" class="letra">ir a coordenadas</a></li>
     </ul>
     <ul>
-        <li><a href="practica4.html">ir a obtener ubicación</a></li>
+        <li><img style='width: 80px; height:80px;' src="imagenes/localiza.png" class="img"><a href="practica4.html" class="letra">ir a obtener ubicación</a></li>
     </ul>
     <ul>
-        <li><a href="practica5.html">ir a mapa localizador</a></li>
+        <li><img style='width: 80px; height:80px;' src="imagenes/Ubicación-Horizon.png" class="img"><a href="practica5.html" class="letra">ir a mapa localizador</a></li>
     </ul>
+</div>
+</div>
+</div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa" async defer>
+    </script> 
 </body>
 </html>
