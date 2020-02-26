@@ -3,54 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practica 3</title>
+    <title>API estática de Google</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <style>
 
         body {
-            background-color: #92D73E;
+            background-color: #a177ee;
         }
-    
+
     </style>
 </head>
 <body>
+
     <div class="container-fluid">
         <div class="container bg-white rounded shadow-lg">
             <div class="row m-5">
                 <div class="col-12 p-5">
 
-    <p> Haz clic para obtener las coordenadas </p>
+                    <button onclick="obtieneUbicacion()">Obtener Ubicación</button>
+                    <div id="mapa" style="padding-left: 50px; border: #ccc 10px solid; background-color: rgb(195, 147, 207); width: 800px; height: 500px;"></div>
 
-    
-    <button onclick="getLocation()">Obtener la localización</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <p id="demo"></p>
-    </div>
-    </div>
-    </div>
-    </div>
     <script>
-        var x = document.getElementById("demo");
 
-        function getLocation() {
+        function obtieneUbicacion() {
             if(navigator.geolocation){
-                navigator.geolocation.getCurrentPosition(showPosition);
+                navigator.geolocation.getCurrentPosition(muestraPosicion);
             }
-            else{
-                x.innerHTML = "No tiene geolocalización";
+            else
+            {
+                alert("No");
             }
-        }
 
-        function showPosition (position) {
-            x.innerHTML = "Latitud: " + position.coords.latitude + "<br>" + "Longitud:" + position.coords.longitude;
+            function muestraPosicion(posicion) {
+                var coordenadas = posicion.coords.latitude + "," + posicion.coords.longitude; 
+                console.log(coordenadas);
+
+                var imagenurl = "https://maps.googleapis.com/maps/api/staticmap?center="+ coordenadas +"&zoom=14&size=400x400&key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA";
+
+                document.getElementById("mapa").innerHTML = "<img src=" + imagenurl + ">";
+            }
         }
 
     </script>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa" async defer>
-    </script> 
-
+   </script> 
 </body>
 </html>
