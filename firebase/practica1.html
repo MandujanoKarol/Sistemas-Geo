@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase</title>
+
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            background-color: #AA0C7F;
+        }
+
+        #lista{
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: bold;
+            color: black;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="shadow-lg p-3 mt-3 mb-5 bg-white rounded">
+            <div class="row m-5">
+                <div class="col-12 p-5">
+
+                    <!---->
+
+                    <div class="container-fluid bg-light py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3
+                                        style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 35px; font-weight: bolder; text-align: center;">
+                                        <i class="fas fa-boxes text-primary"></i>"Lista de productos"</h3> <br>
+                                </div>
+                            </div>
+                            <form id="forma">
+                                <div class="row">
+                                    <div class="col-12 col-md-4 py-2">
+                                        <input type="text" name="nombre" required class="form-control"
+                                            placeholder="Nombre">
+                                    </div>
+
+                                    <div class="col-12 col-md-4 py-2">
+                                        <input type="text" name="codigo" required class="form-control"
+                                            placeholder="Código">
+                                    </div>
+                                    <div class="col-12 col-md-4 py-2">
+                                        <button type="submit" class="btn btn-outline-primary"><img
+                                                style="height: 20px; width: 20px; vertical-align: middle;"
+                                                src="imagenes/icons8-aprobación-26.png" alt="x" /> Agregar <i
+                                                class="fas fa-plus"></i></button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid bg-light">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-md-12 p-2">
+                                    <ul id="lista" class="list-group"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyDhrK0ebcDSijgomI2OgDP7U3cOYPoJ878",
+            authDomain: "sistemasgeo66995.firebaseapp.com",
+            databaseURL: "https://sistemasgeo66995.firebaseio.com",
+            projectId: "sistemasgeo66995",
+            storageBucket: "sistemasgeo66995.appspot.com",
+            messagingSenderId: "409998782191",
+            appId: "1:409998782191:web:e1e570ec29e71ace5a751a"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        const productoslista = document.querySelector("#lista");
+
+        const formulario = document.querySelector("#forma");
+
+        function renderProductos(doc) {
+
+
+            let li = document.createElement("li");
+            let nombre = document.createElement("span");
+            let codigo = document.createElement("span");
+            let borrar = document.createElement("button");
+
+
+
+            borrar.className = "btn btn-outline-danger m-3";
+
+            nombre.textContent = doc.data().nombre + " ";
+            codigo.textContent = doc.data().codigo + " ";
+            borrar.textContent = "Borrar  ";
+
+            li.setAttribute("id", doc.id);
+            li.appendChild(borrar);
+            li.appendChild(nombre);
+            li.appendChild(codigo);
+
+            productoslista.appendChild(li);
+            li.className = "list-group-item list-group-item-action list-group-item-warning";
+
+
+            borrar.addEventListener("click", (e) => {
+                let id = e.target.parentElement.getAttribute("id");
+                db.collection("productos").doc(id).delete();
+            });
+        }
+
+        //Guarda datos
+        formulario.addEventListener('submit', (e) => {
+            e.preventDefault();
+            db.collection('productos').add({
+                nombre: formulario.nombre.value,
+                codigo: formulario.codigo.value
+            });
+
+            formulario.nombre.value = '';
+            formulario.codigo.value = '';
+
+        });
+
+
+        db.collection('productos').onSnapshot(snapshot => {
+            let changes = snapshot.docChanges();
+            changes.forEach(change => {
+                if (change.type == 'added') {
+                    renderProductos(change.doc);
+                } else if (change.type == 'removed') {
+                    console.log(change.doc.id);
+                    let valorid = document.getElementById(change.doc.id);
+                    lista.removeChild(valorid);
+                }
+            });
+        });
+
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
