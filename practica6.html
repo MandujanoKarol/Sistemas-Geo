@@ -45,8 +45,16 @@
         function iniciaMapa() {
             map = new google.maps.Map(document.getElementById("map"), propiedades);
 
+            var icono = {
+                url: "https://www.pngitem.com/pimgs/m/141-1414551_transparent-map-marker-icon-png-png-download.png",
+                url: "https://interbolivia.com/wp-content/uploads/2018/12/pulse.gif"
+            }
             var marker = new google.maps.Marker({
-                position: { lat: 0, lng: 0 }
+                position: { lat: 0, lng: 0 },
+                icon: icono,
+                scaledSize: new google.maps.Size(50, 50),
+                map: map
+
             });
 
             if (navigator.geolocation) {
