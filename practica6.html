@@ -51,8 +51,8 @@
                 //url: "https://interbolivia.com/wp-content/uploads/2018/12/pulse.gif",
                 url: "https://thumbs.gfycat.com/BoilingTenderAruanas-small.gif",
                 scaledSize: new google.maps.Size(50, 50),
-                origin: new google.maps.Point(0,0),
-                anchor: new google.maps.Point(0,0)
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(0, 0)
             }
             var marker = new google.maps.Marker({
                 position: { lat: 0, lng: 0 },
@@ -62,11 +62,11 @@
             });
 
             if (navigator.geolocation) {
-                setInterval(function(){
+                setInterval(function () {
                     moverPosicion(marker);
-                },3000
+                }, 3000
                 );
-                
+
             }
         }
 
