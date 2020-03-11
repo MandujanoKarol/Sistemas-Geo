@@ -55,11 +55,17 @@
             }
             var marker = new google.maps.Marker({
                 position: { lat: 0, lng: 0 },
+                icon: icono,
+                scaledSize: new google.maps.Size(50, 50),
                 map: map
             });
 
             if (navigator.geolocation) {
-                moverPosicion(marker);
+                setInterval(function(){
+                    moverPosicion(marker);
+                },3000
+                );
+                
             }
         }
 
