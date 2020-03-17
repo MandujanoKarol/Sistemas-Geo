@@ -11,12 +11,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" rel="stylesheet"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill9/dist/polyfill.js"></script>
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
+
     <style>
         body {
             background-color: #AA0C7F;
         }
 
-        #lista{
+        #lista {
             font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-weight: bold;
             color: black;
@@ -100,23 +108,34 @@
 
         const formulario = document.querySelector("#forma");
 
+
+
         function renderProductos(doc) {
 
 
             let li = document.createElement("li");
             let nombre = document.createElement("span");
             let codigo = document.createElement("span");
+            let editar = document.createElement("button");
             let borrar = document.createElement("button");
 
 
 
+
             borrar.className = "btn btn-outline-danger m-3";
+            editar.className = "btn btn-outline-success m-3";
 
             nombre.textContent = doc.data().nombre + " ";
             codigo.textContent = doc.data().codigo + " ";
+            editar.textContent = "Editar  ";
             borrar.textContent = "Borrar  ";
 
+
+
+
             li.setAttribute("id", doc.id);
+
+            li.appendChild(editar);
             li.appendChild(borrar);
             li.appendChild(nombre);
             li.appendChild(codigo);
@@ -129,12 +148,76 @@
                 let id = e.target.parentElement.getAttribute("id");
                 db.collection("productos").doc(id).delete();
             });
+
+
+            editar.addEventListener("click", (e) => {
+
+
+                Swal.fire({
+                    title: '<strong>Actualizar un elemento</strong>',
+                    icon: 'warning',
+
+                    html:
+                        '  <input class="form-control" name= "codigo" type="text" required id="Nombre1" placeholder="Codigo" /> <br> ' +
+                        ' <input class="form-control" name="nombre" type="text" required id="Codigo1" placeholder="Nombre" /> <br> ',
+
+                    showCloseButton: true,
+                    showCancelButton: true,
+                    focusConfirm: false,
+                    confirmButtonText:
+                        'Actualizar',
+                    cancelButtonText:
+                        'Cancelar'
+                }).then((result) => {
+                    if (result.value) {
+                        if (document.getElementById("Nombre1").value.trim() != "" &&
+                            document.getElementById("Codigo1").value.trim() != "") {
+
+                            let id = e.target.parentElement.getAttribute("id");
+
+                            db.collection("productos").doc(id).update({
+                                nombre: document.getElementById("Nombre1").value.trim(),
+                                codigo: document.getElementById("Codigo1").value.trim()
+                            });
+                            Swal.fire(
+                                'Actualizado!',
+                                'Elemento actualizado, refresque la página para ver los cambios',
+                                'success'
+                            )
+                        }
+                        else {
+                            Swal.fire(
+                                'No se pudo completar la acción',
+                                'Complete todos los campos',
+                                'warning'
+                            )
+                        }
+                    }
+                });
+            });
+
+
+
         }
 
         //Guarda datos
         formulario.addEventListener('submit', (e) => {
             e.preventDefault();
             db.collection('productos').add({
+                nombre: formulario.nombre.value,
+                codigo: formulario.codigo.value
+            });
+
+            formulario.nombre.value = '';
+            formulario.codigo.value = '';
+
+        });
+
+
+        //Editar datos
+        formulario.addEventListener('submit', (e) => {
+            e.preventDefault();
+            db.collection('productos').update({
                 nombre: formulario.nombre.value,
                 codigo: formulario.codigo.value
             });
@@ -154,9 +237,20 @@
                     console.log(change.doc.id);
                     let valorid = document.getElementById(change.doc.id);
                     lista.removeChild(valorid);
+                } else if (change.type = "modified") {
+                    console.log(change.doc.id);
+                    let valor = document.getElementById(change.doc.id);
+                    lista.removeChild(valor);
+                    renderProducts(change.doc);
+
                 }
+
             });
         });
+
+        ///
+
+
 
     </script>
 
@@ -170,6 +264,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
 
 </body>
 
