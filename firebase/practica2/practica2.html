@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase</title>
+
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!--FontAwesome-->
+    <script src="https://kit.fontawesome.com/725910d27b.js" crossorigin="anonymous"></script>
+    <!--Favicon-->
+    <link rel="icon" type="image/png" sizes="192x192"  href="favicon//android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon//favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon//favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon//favicon-16x16.png">
+    <!---->
+    <style>
+        body {
+            background-color: rgb(23, 82, 42);
+        }
+
+        #lista {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: bold;
+            color: black;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="shadow-lg p-3 mt-3 mb-5 bg-white rounded">
+            <div class="row m-5">
+                <div class="col-12 p-5">
+
+                    <!---->
+
+                    <div class="container-fluid bg-light py-5">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3
+                                        style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 35px; font-weight: bolder; text-align: center;">
+                                        <i class="fas fa-clipboard-list"></i> " Lista de productos " <i class="fas fa-clipboard-list"></i></h3> <br>
+                                </div>
+                                <br>
+                                <div class="col-12">
+                                    <button type="text" class="btn btn-outline-primary btn-block" data-toggle="modal"
+                                        data-target="#ventananuevo"><img style="height: 20px; width: 20px;"
+                                            src="imagenes/icons8-aprobación-26.png" alt="x" /> Nuevo </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid bg-light">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12 col-md-12 p-2">
+                                    <ul id="lista" class="list-group"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- The Modal -->
+    <div class="modal fade" id="ventananuevo">
+        <div class="modal-dialog modal-dialog-centered" >
+            <div class="modal-content" style="background-color: rgb(255, 240, 235);">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title"
+                        style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 22px; font-weight: bolder; text-align: center;">
+                        Añadir Nuevo Producto</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="forma">
+                        <div class="row">
+                            <div class="col-12 col-md-4 py-2">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@</div>
+                                    </div>
+                                    <input type="text" name="nombre" required class="form-control" placeholder="Nombre">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4 py-2">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">#</div>
+                                    </div>
+                                    <input type="text" name="codigo" required class="form-control" placeholder="Código">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4 py-2">
+                                <button type="submit" class="btn btn-outline-primary"> Agregar <i
+                                        class="fas fa-plus-circle"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close <i
+                            class="fas fa-times-circle"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--Segundo Modal-->
+
+    <!-- The Modal -->
+    <div class="modal fade" id="ventanaeditar">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content" style="background-color: rgb(255, 240, 235);">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    
+                    <h4 class="modal-title"
+                        style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 22px; font-weight: bolder; text-align: center;">
+                        Editar Producto</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form id="formaeditar">
+                        <div class="row">
+                            <div class="col-12 col-md-4 py-2">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">@</div>
+                                    </div>
+                                    <input type="text" name="nombreeditar" required class="form-control"
+                                        placeholder="Nombre">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4 py-2">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">#</div>
+                                    </div>
+                                    <input type="text" name="codigoeditar" required class="form-control"
+                                        placeholder="Código">
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4 py-2">
+                                <input type="hidden" name="ideditar" id="ideditar">
+                                <button type="submit" class="btn btn-outline-primary"> Guardar el cambio <i
+                                        class="fas fa-save"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close <i
+                            class="fas fa-times-circle"></i></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="basededatos.js"></script>
+    <script src="constantes.js"></script>
+    <script src="registro.js"></script>
+    <script src="muestraregistros.js"></script>
+    <script src="agregar.js"></script>
+    <script src="actualizar.js"></script>
+    <script src="servicio.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
