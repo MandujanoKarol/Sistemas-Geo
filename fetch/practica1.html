@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fecht1</title>
+    <title>Practica 1 Fecht1</title>
+    <style>
+
+        body {
+            background-color: #943287;
+        }
+    
+       
+    
+    </style>
 </head>
+
+
 <body>
 
-    <div id="paises"></div>
+    <div class="container-fluid">
+        <div class="container bg-white rounded shadow-lg">
+            <div class="row m-5">
+                <div class="col-12 p-5">
+                    <div class="list-group-item list-group-item-action list-group-item-light" id="paises"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
 
         var paises = document.getElementById("paises");
         fetch('datos.json')
-        .then( function(response){
+            .then(function (response) {
 
-            response.json().then( function(datos){
+                response.json().then(function (datos) {
 
-                datos.forEach( registro => {
-                    console.log(registro.country);
-                    let nombre = document.createElement("p");
-                    nombre.textContent = "País: " + registro.country + ", casos:" + registro.cases;
-                    paises.appendChild(nombre);
+                    datos.forEach(registro => {
+                        console.log(registro.country);
+                        let nombre = document.createElement("p");
+                        nombre.textContent = "País: " + registro.country + ", casos:" + registro.cases;
+                        paises.appendChild(nombre);
+                    });
+
+
                 });
-                
 
             });
 
-        });
-
     </script>
-    
+
 </body>
+
 </html>
