@@ -28,13 +28,14 @@
         <div class="container bg-white rounded shadow-lg">
             <div class="row m-5">
                 <div class="col-12 p-5">
-                    <h1 class="text-center">Casos COVID-19</h1>
+                    <h1 class="text-center" style="font-style: oblique; font-weight: bold;">Casos COVID-19</h1><br>
                     <div id="map"></div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+
     <script>
 
         var coordenadas = {
@@ -82,7 +83,7 @@
                                                     map: map,
                                                     icon: imagen,
                                                     position: new google.maps.LatLng(marcador.CapitalLatitude, marcador.CapitalLongitude),
-                                                    title: marcador.CountryName + " " +registro.cases
+                                                    title: marcador.CountryName + " " + registro.cases
                                                 });
 
                                                 marker.addListener('click', function () {
