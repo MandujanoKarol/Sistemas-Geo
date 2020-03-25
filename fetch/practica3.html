@@ -16,7 +16,8 @@
             height: 100%;
         }
 
-        html, body {
+        html,
+        body {
             width: 100%;
             height: 100%;
             margin: 0;
@@ -26,7 +27,16 @@
 </head>
 
 <body>
-    <div id="map"></div>
+    <div class="container-fluid">
+        <div class="container bg-white rounded shadow-lg">
+            <div class="row m-5">
+                <div class="col-12 p-5">
+
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
 
@@ -61,7 +71,7 @@
             ];
             return markers;
         }
-        
+
 
         function iniciaMapa() {
             const map = new google.maps.Map(document.getElementById('map'), propiedades);
