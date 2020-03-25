@@ -48,12 +48,10 @@
     </div>
 
     <script>
-
         var coordenadas = {
             lat: 0,
             lng: 0
-
-        };
+        }
 
         var propiedades = {
             center: coordenadas,
@@ -68,20 +66,18 @@
                     latitude: "19.427"
                 },
                 {
-                    name: "Francia",
-                    longitude: "2.3487999",
-                    latitude: " 48.8534088"
+                    name: "Brazil",
+                    longitude: "-47.9292",
+                    latitude: "-15.7801"
                 },
                 {
-                    name: "España",
+                    name: "Spain",
                     longitude: "-3.70327",
                     latitude: "40.4167"
                 }
             ];
             return markers;
         }
-
-
         function iniciaMapa() {
             const map = new google.maps.Map(document.getElementById('map'), propiedades);
             const marcadores = obtieneMarcadores();
@@ -94,7 +90,6 @@
             }
 
         }
-
     </script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
