@@ -1,79 +1,93 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Fetch3</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <style>
- 
-      #map {
-        height: 50%;
-      }
- 
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #d4c2d2;
+        }
     </style>
-  </head>
-  <body>
-    <div id="map"></div>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container bg-white rounded shadow-lg">
+            <div class="row m-5">
+                <div class="col-12 p-5">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
- 
-    var coordenadas = {
-        lat: 0, 
-        lng: 0
+
+        var coordenadas = {
+            lat: 0,
+            lng: 0
         }
 
-    var propiedades = {
-        center: coordenadas,
-        zoom: 2
+        var propiedades = {
+            center: coordenadas,
+            zoom: 2
         }
 
-    function obtieneMarcadores() {
-        const markers = [
-            {
-                name:  "México",
-                longitude: "-99.1276",
-                latitude: "19.427"
-            },
-            {
-                name: "Brazil",
-                longitude: "-47.9292",
-                latitude: "-15.7801"
-            },
-            {
-                name: "Spain",
-                longitude: "-3.70327",
-                latitude: "40.4167"
-            }
-        ];
-        return markers;
-    }
+        function obtieneMarcadores() {
+            const markers = [
+                {
+                    name: "México",
+                    longitude: "-99.1276",
+                    latitude: "19.427"
+                },
+                {
+                    name: "Francia",
+                    longitude: "2.3487999",
+                    latitude: " 48.8534088"
+                },
+                {
+                    name: "España",
+                    longitude: "-3.70327",
+                    latitude: "40.4167"
+                }
+            ];
+            return markers;
+        }
 
-    function iniciaMapa() {
+        function iniciaMapa() {
 
-        const map = new google.maps.Map(document.getElementById('map'), propiedades);
+            const map = new google.maps.Map(document.getElementById('map'), propiedades);
 
-        const marcadores = obtieneMarcadores();
+            const marcadores = obtieneMarcadores();
 
-        for(marcador of marcadores) {
+            for (marcador of marcadores) {
                 let marker = new google.maps.Marker({
-                map: map,
-                position: new google.maps.LatLng(marcador.latitude, marcador.longitude),
-                title: marcador.name
-            })
+                    map: map,
+                    position: new google.maps.LatLng(marcador.latitude, marcador.longitude),
+                    title: marcador.name
+                })
+            }
+
         }
 
-    }
 
 
 
- 
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa">
-    </script>
-  </body>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa">
+        </script>
+</body>
+
 </html>
