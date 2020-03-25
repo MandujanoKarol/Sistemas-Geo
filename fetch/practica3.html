@@ -9,12 +9,12 @@
     <style>
         #map {
             width: 100%;
-            height: 100;
+            height: 100%;
         }
 
         html, body {
             width: 100%;
-            height: 100;
+            height: 100%;
             margin: 0;
             padding: 0;
         }
@@ -41,33 +41,35 @@
             const markers = [
                 {
                     name: "México",
-                    latitud: "19.4326296",
-                    longitud: "-99.1331785"
-                }, {
-                    name: "Brasil",
-                    latitud: "-10.3333333",
-                    longitud: "-53.2"
-                }, {
-                    name: "Perú",
-                    latitud: "-6.8699697",
-                    longitud: "-75.0458515"
+                    longitude: "-99.1276",
+                    latitude: "19.427"
+                },
+                {
+                    name: "Brazil",
+                    longitude: "-47.9292",
+                    latitude: "-15.7801"
+                },
+                {
+                    name: "España",
+                    longitude: "-3.70327",
+                    latitude: "40.4167"
                 }
             ];
             return markers;
         }
+        
 
         function iniciaMapa() {
             const map = new google.maps.Map(document.getElementById('map'), propiedades);
-            const marcadores = obtienemarcadores();
-            console.log(marcadores);
-
+            const marcadores = obtieneMarcadores();
             for (marcador of marcadores) {
                 let marker = new google.maps.Marker({
                     map: map,
                     position: new google.maps.LatLng(marcador.latitude, marcador.longitude),
                     title: marcador.name
-                });
+                })
             }
+
         }
 
     </script>
