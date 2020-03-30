@@ -17,7 +17,7 @@
 
         #mapa {
             width: 100%;
-            height: 500px;
+            height: 640px;
         }
     </style>
 </head>
@@ -92,7 +92,7 @@
                 {
                     center: coordenadas,
                     zoom: 3,
-                    mapTypeId: 'terrain'
+                    //mapTypeId: 'terrain'
                 }
             );
 
@@ -109,12 +109,12 @@
                     label: labels[cuenta % labels.length]
                 });
 
-                marcadores.position(marcador); //metemos todos los marcadores
+                marcadores.push(marcador); //metemos todos los marcadores
                 cuenta++;
             });
 
             var markerCluster = new MarkerClusterer(map, marcadores, {
-                imagePath: '',
+                imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
                 gridSize: 60,
                 zoomOnClick: true, //al momento de dar click hacer el zoom
                 maxZoom: 10
