@@ -13,6 +13,8 @@
         body {
             margin: 0px;
             padding: 0px;
+
+            background-color: #32943f;
         }
 
         #mapa {
@@ -25,25 +27,25 @@
 <body>
 
     <div class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
+        <div class="container bg-white rounded shadow-lg">
+            <div class="row m-5">
+                <div class="col-12 p-2">
                     <h1 class="text-center">Mapa Clustering</h1>
                     <div id="mapa"></div>
                 </div>
             </div>
             <div class="row p-2">
                 <div class="col-3 text-center">
-                    <button class="btn btn-primary" id="btnroadmap">roadmap</button>
+                    <button class="btn btn-outline-primary" id="btnroadmap">roadmap</button>
                 </div>
                 <div class="col-3 text-center">
-                    <button class="btn btn-warning" id="btnsatelite">satellite</button>
+                    <button class="btn btn-outline-warning" id="btnsatelite">satellite</button>
                 </div>
                 <div class="col-3 text-center">
-                    <button class="btn btn-danger" id="btnhybrid">hybrid</button>
+                    <button class="btn btn-outline-danger" id="btnhybrid">hybrid</button>
                 </div>
                 <div class="col-3 text-center">
-                    <button class="btn btn-success" id="btnterrain">terrain</button>
+                    <button class="btn btn-outline-success" id="btnterrain">terrain</button>
                 </div>
             </div>
         </div>
