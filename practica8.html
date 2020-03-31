@@ -33,8 +33,17 @@
                     <h1 class="text-center">Google Maps Idiomas</h1>
                     <div id="mapa"></div>
                 </div>
+                <div class="col-12" style="margin-top: 20px;">
+                    <select name="idioma" id="idioma" class="form-control">
+                        <option value="es">Español</option>
+                        <option value="en">Inglés</option>
+                        <option value="it">Italiano</option>
+                        <option value="en">Chino</option>
+                        <option value="ja">Japonés</option>
+                    </select>
+                </div>
             </div>
-            
+
         </div>
     </div>
 
@@ -47,7 +56,19 @@
         }
 
 
+        const queryString = window.location.search;
 
+        console.log(queryString);
+
+        const urlParams = new URLSearchParams(queryString); //me va a dividir mis variables
+        const idioma = urlParams.get('idioma');
+
+        console.log(idioma);
+
+        var script = document.createElement('script');
+
+        script.src= 'https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa&language=' + idioma ;
+        document.head.appendChild(script);
 
         function iniciaMapa() {
             var map = new google.maps.Map(
@@ -59,9 +80,9 @@
                 }
             );
 
-         
 
-           
+
+
         }
     </script>
 
@@ -76,10 +97,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa&language=ja&region=JP"
-        async defer>
-        </script>
+
 </body>
 
 </html>
