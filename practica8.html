@@ -26,27 +26,32 @@
 
 <body>
 
+    <form action="">
     <div class="container-fluid">
         <div class="container bg-white rounded">
             <div class="row m-5">
-                <div class="col-12" style="margin-top: 20px;">
+                <div class="col-6">
                     <h1 class="text-center">Google Maps Idiomas</h1>
-                    <div id="mapa"></div>
                 </div>
-                <div class="col-12" style="margin-top: 20px;">
-                    <select name="idioma" id="idioma" class="form-control">
+                <div class="col-6">
+                    <select name="idioma" id="idioma" class="form-control" onchange="this.form.submit()">
                         <option value="es">Español</option>
                         <option value="en">Inglés</option>
                         <option value="it">Italiano</option>
-                        <option value="en">Chino</option>
+                        <option value="zh">Chino</option>
                         <option value="ja">Japonés</option>
                     </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div id="mapa"></div>
                 </div>
             </div>
 
         </div>
     </div>
-
+</form>
 
     <script>
 
@@ -67,7 +72,7 @@
 
         var script = document.createElement('script');
 
-        script.src= 'https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa&language=' + idioma ;
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa&language=' + idioma;
         document.head.appendChild(script);
 
         function iniciaMapa() {
