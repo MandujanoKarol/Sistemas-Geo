@@ -68,6 +68,8 @@
         const urlParams = new URLSearchParams(queryString); //me va a dividir mis variables
         const idioma = urlParams.get('idioma');
 
+        document.getElementById('idioma').value =idioma;  //dejarme seleccionado el idioma que selecciono
+
         console.log(idioma);
 
         var script = document.createElement('script');
