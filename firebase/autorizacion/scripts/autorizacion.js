@@ -112,7 +112,7 @@ entrarGoogle = () =>{
 
         console.log(token);
 
-       /* var user = result.user;
+        var user = result.user;
 
         let html = `
             <p>Nombre: ${ user.displayName}</p>
@@ -129,6 +129,6 @@ entrarGoogle = () =>{
 
 
     }).catch( function(error){
-        console.log(error);*/
-    })//;
+        console.log(error);
+    });
 }
