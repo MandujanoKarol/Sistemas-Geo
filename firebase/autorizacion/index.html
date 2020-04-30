@@ -7,7 +7,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
@@ -19,6 +20,49 @@
 
 </head>
 <style>
+    .container {
+        padding: 2rem 0rem;
+    }
+
+    @media (min-width: 576px) {
+        .modal-dialog {
+            max-width: 400px;
+
+            .modal-content {
+                padding: 1rem;
+            }
+        }
+    }
+
+    .modal-header {
+        .close {
+            margin-top: -1.5rem;
+        }
+    }
+
+    .form-title {
+        margin: -2rem 0rem 2rem;
+    }
+
+    .btn-round {
+        border-radius: 3rem;
+    }
+
+    .delimiter {
+        padding: 1rem;
+    }
+
+    .social-buttons {
+        .btn {
+            margin: 0 0.5rem 1rem;
+        }
+    }
+
+    .signup-section {
+        padding: 0.3rem 0rem;
+    }
+
+
     img {
         width: 80%;
     }
@@ -31,8 +75,11 @@
 
 <body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">DLS EATS</a>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">DLS EATS
+        </a>
+
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,7 +89,7 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item logged-in">
-                    <a class="nav-link"  href="#" data-toggle="modal" data-target="#micuentamodal">Mi Cuenta</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#micuentamodal">Mi Cuenta</a>
                 </li>
 
                 <li class="nav-item logged-in">
@@ -56,26 +103,82 @@
                 </li>
 
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+
         </div>
     </nav>
 
 
-
-    <!-- Modal INGRESAR-->
     <div class="modal fade" id="ingresarmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ingresarModalLabel">Ingresar</h5>
+                <div class="modal-header border-bottom-0">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
+                <div class="modal-body">
+                    <div class="form-title text-center">
+                        <h4 id="ingresarModalLabel">Ingresar</h4>
+                    </div>
+
+                    <div class="d-flex flex-column text-center">
+
+                        <form id="formaingresar">
+                            
+                                <div class="col-12 form-group">
+                                    <input type="email" id="correo" class="form-control" placeholder="Ingresa tu correo"
+                                        required>
+                                </div>
+                                <div class="col-12  form-group">
+                                    <input type="password" id="contrasena" class="form-control"
+                                        placeholder="Ingresa tu contraseña" required>
+                                </div>
+                           
+
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <button class="btn btn-info btn-block btn-round">Ingresar</button>
+                                    <p class="error text-danger"></p>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                        <div class="text-center text-muted delimiter">O ingresa con una red social</div>
+
+                        <div class="d-flex justify-content-center social-buttons">
+                            <button type="button" class="btn btn-secondary btn-round" data-toggle="tooltip"
+                                data-placement="top" title="Google">
+                                <i onclick="entrarGoogle()" class="fa fa-google" aria-hidden="true">G</i>
+                              
+                            </button>
+
+                            </di>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <div class="signup-section">Not a member yet? <a href="#a" class="text-info"> Sign Up</a>.</div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal INGRESAR-->
+        <!--<div class="modal fade" id="ingresarmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ingresarModalLabel">Ingresar</h5>
+                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
                 <div class="modal-body">
                     <form id="formaingresar">
                         <div class="row">
@@ -98,7 +201,10 @@
                                 <p class="error text-danger"></p>
                             </div>
                         </div>
+
                     </form>
+
+
                     <div class="row">
                         <div class="col-12 text-center">
                             <span onclick="entrarGoogle()" class="btn btn-danger">Ingresar con Google</span>
@@ -110,102 +216,102 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
 
-    <!-- Modal REGISTRATE-->
-    <div class="modal fade" id="registratemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Regìstrate</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="formaregistrate">
+        <!-- Modal REGISTRATE-->
+        <div class="modal fade" id="registratemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Regìstrate</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formaregistrate">
 
-                        <div class="row">
-                            <div class="col-12 m-2">
-                                <input type="text" id="rnombre" class="form-control" placeholder="Ingresa tu nombre"
-                                    required>
+                            <div class="row">
+                                <div class="col-12 m-2">
+                                    <input type="text" id="rnombre" class="form-control" placeholder="Ingresa tu nombre"
+                                        required>
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="row">
-                            <div class="col-12 m-2">
-                                <input type="email" id="rcorreo" class="form-control" placeholder="Ingresa tu correo"
-                                    required>
+                            <div class="row">
+                                <div class="col-12 m-2">
+                                    <input type="email" id="rcorreo" class="form-control"
+                                        placeholder="Ingresa tu correo" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-12 m-2">
-                                <input type="password" id="rcontrasena" class="form-control"
-                                    placeholder="Ingresa tu contraseña" required>
+                            <div class="row">
+                                <div class="col-12 m-2">
+                                    <input type="password" id="rcontrasena" class="form-control"
+                                        placeholder="Ingresa tu contraseña" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-12 m-2">
-                                <input type="number" step="any" id="rtelefono" class="form-control" placeholder="Ingresa tu número telefónico"
-                                    required>
+                            <div class="row">
+                                <div class="col-12 m-2">
+                                    <input type="number" step="any" id="rtelefono" class="form-control"
+                                        placeholder="Ingresa tu número telefónico" required>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-12 m-2">
-                                <input type="text" id="rdireccion" class="form-control" placeholder="Ingresa tu dirección"
-                                    required>
+                            <div class="row">
+                                <div class="col-12 m-2">
+                                    <input type="text" id="rdireccion" class="form-control"
+                                        placeholder="Ingresa tu dirección" required>
+                                </div>
                             </div>
-                        </div>
 
 
-                        <div class="row">
-                            <div class="col-12 text-center">
-                                <input type="submit" class="btn btn-primary" value="Registrarse"></input>
-                                <p class="error text-danger"></p>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <input type="submit" class="btn btn-primary" value="Registrarse"></input>
+                                    <p class="error text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal MiCuenta -->
-    <div class="modal fade" id="micuentamodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="micuentaModalLabel">Mi Cuenta</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row m-2">
-                        <div class="col-12 datosdelacuenta">
-                        </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+        <!-- Modal MiCuenta -->
+        <div class="modal fade" id="micuentamodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="micuentaModalLabel">Mi Cuenta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row m-2">
+                            <div class="col-12 datosdelacuenta">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row text-center" id="listadeplatillos">
-           <!-- <div class="col-12 col-md-4">
+        <div class="container">
+            <div class="row text-center" id="listadeplatillos">
+                <!-- <div class="col-12 col-md-4">
                 <img src="imagenes/pizzadepepperoni.jpg" alt="Pizza">
                 <p>Pizza de Pepperoni</p>
                 <p>$89</p>
@@ -220,36 +326,36 @@
                 <p>Pizza de Carnes Frías</p>
                 <p>$149</p>
             </div>-->
+            </div>
         </div>
-    </div>
 
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
 
-    <script>
-        // Your web app's Firebase configuration
-        var firebaseConfig = {
-            apiKey: "AIzaSyA3lVGLkdCOZEW_g-4qN_TJmDcyODrPED8",
-            authDomain: "autorizacion-d7a5f.firebaseapp.com",
-            databaseURL: "https://autorizacion-d7a5f.firebaseio.com",
-            projectId: "autorizacion-d7a5f",
-            storageBucket: "autorizacion-d7a5f.appspot.com",
-            messagingSenderId: "380978959628",
-            appId: "1:380978959628:web:c160dde649c0bcb34ce529"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyA3lVGLkdCOZEW_g-4qN_TJmDcyODrPED8",
+                authDomain: "autorizacion-d7a5f.firebaseapp.com",
+                databaseURL: "https://autorizacion-d7a5f.firebaseio.com",
+                projectId: "autorizacion-d7a5f",
+                storageBucket: "autorizacion-d7a5f.appspot.com",
+                messagingSenderId: "380978959628",
+                appId: "1:380978959628:web:c160dde649c0bcb34ce529"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const auth = firebase.auth();
 
-        const db = firebase.firestore();
-    </script>
+            const db = firebase.firestore();
+        </script>
 
-    <script src="scripts/autorizacion.js"></script>
-    <script src="scripts/index.js"></script>
-    <!--<script src="scripts/micuenta.js"></script>-->
+        <script src="scripts/autorizacion.js"></script>
+        <script src="scripts/index.js"></script>
+        <!--<script src="scripts/micuenta.js"></script>-->
 
 </body>
 
