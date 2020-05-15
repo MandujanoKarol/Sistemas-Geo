@@ -3,7 +3,7 @@ const listaloggedin = document.querySelectorAll('.logged-in');
 const datosdelacuenta = document.querySelector('.datosdelacuenta');
 
 
-const configurarMenu = (user) => {
+const configuraMenu = (user) => {
 
     if (user) {
 
