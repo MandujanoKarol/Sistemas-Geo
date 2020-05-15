@@ -57,8 +57,8 @@ const obtieneAmigos = (data) => {
         };
 
         informacion.setPosition(pos);
+        informacion.setContent("Usuario registrado");
         informacion.setContent(doc.data().nombre);
-        informacion.setContent(doc.data().pos);
         informacion.open(map);
 
     });
