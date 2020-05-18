@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Options</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #mapa1,
+        #mapa2,
+        #mapa3,
+        #mapa4,
+        #mapa5,
+        #mapa6 {
+            width: 100%;
+            height: 340px;
+        }
+
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid m-2 text-center">
+        <!--Contenedor fluido para que ocupe toda la pantalla-->
+        <div class="row">
+            <div class="col-12">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <h2>Controles de mapa</h2>
+            </div>
+        </div>
+
+        <!--Defino una fila en la que irán estos dos mapas-->
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa1"></div>
+                <p>Mapa con controles estándar</p>
+            </div>
+
+
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa2"></div>
+                <p>Mapa sin controles</p>
+                <!--Mapa limpio (sin controles)-->
+            </div>
+        </div>
+
+        <!--Defino otra fila en la que irán estos otros dos mapas-->
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa3"></div>
+                <p>Mapa con zoom desactivado</p>
+            </div>
+
+
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa4"></div>
+                <p>Mapa con Control-Options</p>
+                <!--Uso de DROPDOWN_MENU-->
+            </div>
+        </div>
+
+
+        <!--Defino otra fila en la que irán estos otros dos mapas-->
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa5"></div>
+                <p>Mapa con ControlPosition</p>
+                <!--Establecemos nostros los controles y definimos la posición en la que queremos cada uno de los controles-->
+            </div>
+
+
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa6"></div>
+                <p>Mapa con Restricting MapBounds</p>
+                <!--Restringir en cierta zona-->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function iniciaMapa() {
+
+            //Coordenadas en general de los mapas
+            var coordenadas = { lat: 21.152639, lng: -101.711598 };
+
+            //Propiedades del mapa1
+            var propiedades1 = { //propiedades del mapa
+                center: coordenadas,
+                zoom: 12
+
+            };
+
+            var mapa1 = new google.maps.Map(document.getElementById('mapa1', propiedades1));
+
+            //Propiedades del mapa2
+            var propiedades2 = { //propiedades del mapa
+                center: coordenadas,
+                zoom: 12,
+                disableDefaultUI: true
+
+            };
+
+            var mapa2 = new google.maps.Map(document.getElementById('mapa2', propiedades2));
+
+
+            //Propiedades del mapa3
+            var propiedades3 = { //propiedades del mapa
+                center: coordenadas,
+                zoom: 12,
+                zoomControl: false, //desactivo zoom
+                scaleControl: false    //dejo activado el escalamiento del mapa 
+            };
+
+            var mapa3 = new google.maps.Map(document.getElementById('mapa3', propiedades3));
+
+
+            //Propiedades del mapa4
+            var propiedades4 = { //propiedades del mapa
+                center: coordenadas,
+                zoom: 12,
+                mapTypeControl: true, //por default es horizontal y aparece en la esquina izquierda
+                mapTypeControlOptions: {
+                    style: google.maps.mapTypeControlStyle.DROPDOWN_MENU,
+                    mapTypeIds: ['roadMap', 'satellite', 'terrain']
+
+                }
+            };
+
+            var mapa4 = new google.maps.Map(document.getElementById('mapa4', propiedades4));
+
+
+            //Propiedades del mapa5
+            var propiedades5 = { //propiedades del mapa
+                center: coordenadas,
+                zoom: 12,
+                mapTypeControl: true, //por default es horizontal y aparece en la esquina izquierda
+                mapTypeControlOptions: {
+                    style: google.maps.mapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.TOP_CENTER //la barra horizontal la establezco en la parte de en medio
+                },
+
+                zoomControl: true, //primero defino que el zoom está en true
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_CENTER //establezco la barra de zoom en el centro a la izquierda
+                },
+                scaleControl: true, //defino que primero este en true
+                streetViewControl: true,
+                streetViewControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_TOP //establezco street view en la parte izquierda superior
+                },
+                fullscreenControl: true //hacer pantalla completa
+
+            };
+
+            var mapa5 = new google.maps.Map(document.getElementById('mapa5', propiedades5));
+
+
+
+            //Propiedades del mapa6
+
+            //Primero establezo los límites en donde quiero restringir
+            var limites = {
+                north: 21.390039, //latitud
+                south: 20.858414, //latitud
+                west: -102.149631, //longitud
+                east:  -101.092990 //longitud
+            }
+
+            var propiedades6 = { //propiedades del mapa
+                center: coordenadas,
+                zoom: 12,
+                restriction:{
+                    latLngbounds : limites,
+                    strictBounds: false
+                }
+
+            };
+
+            var mapa6 = new google.maps.Map(document.getElementById('mapa6', propiedades6));
+
+        }
+
+    </script>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa"
+        async defer>
+        </script>
+</body>
+
+</html>
