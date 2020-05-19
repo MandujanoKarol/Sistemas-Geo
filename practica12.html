@@ -132,13 +132,13 @@
 
             //Propiedades del mapa3
             var mapa3 = new google.maps.Map(document.getElementById('mapa3'), propiedades);
-            var infowindow = new google.maps.InfoWindow({
+            var infowindow1 = new google.maps.InfoWindow({
                 content: 'Cambia el zoom',
                 position: coordenadas
             });
-            infowindow.open(mapa3); //abre mi infoWindow en esas coordenadas
+            infowindow1.open(mapa3); //abre mi infoWindow en esas coordenadas
             mapa3.addListener('zoom_changed', function () {
-                infowindow.setContent('Zoom:' + mapa3.getZoom()); //me regresa las coordenadas
+                infowindow1.setContent('Zoom:' + mapa3.getZoom()); //me regresa las coordenadas
             });
 
 
@@ -160,6 +160,7 @@
 
             //Propiedades del mapa5
             var mapa5 = new google.maps.Map(document.getElementById('mapa5'), propiedades);
+           
             var infowindow = new google.maps.InfoWindow({ //me regresa las coordenadas en el InfoWindow
                 content: 'Haz click para obtener las coordenadas',
                 position: coordenadas
