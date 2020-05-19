@@ -136,7 +136,7 @@
                 position: coordenadas
             });
             infowindow.open(mapa3); //abre mi infoWindow en esas coordenadas
-            mapa3.addListener('zoom_changed', function () { 
+            mapa3.addListener('zoom_changed', function() { 
                 infowindow.setContent('Zoom:' + mapa3.getZoom()); //me regresa las coordenadas
             });
 
