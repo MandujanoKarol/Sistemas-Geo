@@ -41,7 +41,8 @@
             <div class="col-12 col-md-6">
                 <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
                 <div id="mapa1"></div>
-                <p>Evento Click en Mapa</p> <!--Cuando hago zoom me centra en donde se encuentra el marcador-->
+                <p>Evento Click en Mapa</p>
+                <!--Cuando hago zoom me centra en donde se encuentra el marcador-->
             </div>
 
 
@@ -111,7 +112,7 @@
                 map: mapa1
             });
             marker.addListener('click', function () { //redirecciona el evento click
-                mapa1.setZoom(8); 
+                mapa1.setZoom(8);
                 mapa1.setCenter(marker.getPosition()); //acerco el mapa 
             });
 
@@ -130,13 +131,13 @@
 
 
             //Propiedades del mapa3
-            var mapa3 = new google.maps.Map(document.getElementById('mapa3'), propiedades); 
+            var mapa3 = new google.maps.Map(document.getElementById('mapa3'), propiedades);
             var infowindow = new google.maps.InfoWindow({
-                content: 'Favor de cambiar el zoom para ver el nivel',
+                content: 'Cambia el zoom',
                 position: coordenadas
             });
             infowindow.open(mapa3); //abre mi infoWindow en esas coordenadas
-            mapa3.addListener('zoom_changed', function() { 
+            mapa3.addListener('zoom_changed', function () {
                 infowindow.setContent('Zoom:' + mapa3.getZoom()); //me regresa las coordenadas
             });
 
