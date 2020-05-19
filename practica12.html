@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos en mapas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        #mapa1,
+        #mapa2,
+        #mapa3,
+        #mapa4,
+        #mapa5,
+        #mapa6 {
+            width: 100%;
+            height: 340px;
+        }
+
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid m-2 text-center">
+        <!--Contenedor fluido para que ocupe toda la pantalla-->
+        <div class="row">
+            <div class="col-12">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <h2>Eventos de mapa</h2>
+            </div>
+        </div>
+
+        <!--Defino una fila en la que irán estos dos mapas-->
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa1"></div>
+                <p>Evento Click en Mapa</p> <!--Cuando hago zoom me centra en donde se encuentra el marcador-->
+            </div>
+
+
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa2"></div>
+                <p>Regresar al centro</p>
+                <!--Me regresa al centro-->
+            </div>
+        </div>
+
+
+        <!--Defino otra fila en la que irán estos otros dos mapas-->
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa3"></div>
+                <p>Obtener el nivel de zoom</p>
+            </div>
+
+
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa4"></div>
+                <p>Colocar el marcador y mover al centro</p>
+                <!--Establecer el marcador y mover al centro-->
+            </div>
+        </div>
+
+
+        <!--Defino otra fila en la que irán estos otros dos mapas-->
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa5"></div>
+                <p>obtiene coordenadas con mapMouseEvent</p>
+                <!--me regresa las coordenadas en el InfoWindow-->
+            </div>
+
+
+            <div class="col-12 col-md-6">
+                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                <div id="mapa6"></div>
+                <p>addDomListener - Mover mapa al centro</p>
+                <!--Cuando de click en el botón realiza una acción (centrar el mapa en las coordenadas correspondientes)-->
+                <button class="btn btn-primary" id="btnCentrar">Centrar en coordenadas</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function iniciaMapa() {
+
+            //Coordenadas en general de los mapas
+            var coordenadas = { lat: 21.152639, lng: -101.711598 };
+
+            //Propiedades del mapa1
+            var propiedades = { //propiedades del mapa
+                center: coordenadas,
+                zoom: 12
+
+            };
+
+            var mapa1 = new google.maps.Map(document.getElementById('mapa1'), propiedades);
+            var marker = new google.maps.Marker({
+                position: coordenadas,
+                map: mapa1
+            });
+            marker.addListener('click', function () { //redirecciona el evento click
+                mapa1.setZoom(8); 
+                mapa1.setCenter(marker.getPosition()); //acerco el mapa 
+            });
+
+
+            //Propiedades del mapa2
+            var mapa2 = new google.maps.Map(document.getElementById('mapa2'), propiedades);
+            var marker2 = new google.maps.Marker({
+                position: coordenadas,
+                map: mapa2
+            });
+            mapa2.addListener('center_changed', function () { //cuando detecte que el centro cambia, ejecuta el evento de regresar al centro
+                window.setTimeout(function () {
+                    mapa2.panTo(marker2.getPosition());
+                }, 3000);
+            });
+
+
+            //Propiedades del mapa3
+            var mapa3 = new google.maps.Map(document.getElementById('mapa3'), propiedades); 
+            var infowindow = new google.maps.InfoWindow({
+                content: 'Favor de cambiar el zoom para ver el nivel',
+                position: coordenadas
+            });
+            infowindow.open(mapa3); //abre mi infoWindow en esas coordenadas
+            mapa3.addListener('zoom_changed', function () { 
+                infowindow.setContent('zoom:' + ''+ mapa3.getZoom()); //me regresa las coordenadas
+            });
+
+
+
+            //Propiedades del mapa4
+            var mapa4 = new google.maps.Map(document.getElementById('mapa4'), propiedades); //me establece marcadores y me establece en el centro
+            mapa4.addListener('click', function (e) {
+                console.log(e.latLng);
+                estableceMarcador(e.latLng);
+            });
+            function estableceMarcador(latLng) { //recibe lat y lng
+                var marker = new google.maps.Marker({ //marcador que está en el mapa4
+                    position: latLng,
+                    map: mapa4
+                });
+                mapa4.panTo(latLng); //tecleo el marcador y me mueve hacia estas coordenadas
+            }
+
+
+            //Propiedades del mapa5
+            var mapa5 = new google.maps.Map(document.getElementById('mapa5'), propiedades);
+            var infowindow = new google.maps.InfoWindow({ //me regresa las coordenadas en el InfoWindow
+                content: 'Haz click para obtener las coordenadas',
+                position: coordenadas
+            });
+            infowindow.open(mapa5);
+            mapa5.addListener('click', function (evento) { //responde al veneto click
+                infowindow.close(); //me crea nuevo InfoWindow
+                infowindow = new google.maps.InfoWindow({ position: evento.latLng }); //recupero las coordenadas
+                infowindow.setContent(evento.latLng.toString()); //muestro las coordenadas
+                infowindow.open(mapa5); //lo abro en mapa5
+            });
+
+
+            //Propiedades del mapa6
+            var mapa6 = new google.maps.Map(document.getElementById('mapa6'), propiedades);
+            google.maps.event.addDomListener(mapa6, 'click', function () { //hago referencia afuera del mapa
+                window.alert('Se ha hecho click en el mapa');
+            });
+            var boton = document.getElementById('btnCentrar');
+            google.maps.event.addDomListener(boton, 'click', function () {
+                mapa6.panTo(coordenadas);
+            });
+        }
+
+    </script>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyADjOfdGIg-7JiqjoTstMN9el4g-nLhxxA&callback=iniciaMapa"
+        async defer>
+        </script>
+</body>
+
+</html>
