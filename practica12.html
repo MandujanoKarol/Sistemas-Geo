@@ -7,7 +7,7 @@
     <title>Eventos en mapas</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         #mapa1,
         #mapa2,
@@ -29,71 +29,73 @@
 
 <body>
     <div class="container-fluid m-2 text-center">
-        <!--Contenedor fluido para que ocupe toda la pantalla-->
-        <div class="row">
-            <div class="col-12">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <h2>Eventos de mapa</h2>
+        <div class="container bg-white rounded shadow-lg">
+            <!--Contenedor fluido para que ocupe toda la pantalla-->
+            <div class="row">
+                <div class="col-12">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <h2>Eventos de mapa</h2>
+                </div>
             </div>
+
+            <!--Defino una fila en la que irán estos dos mapas-->
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa1"></div>
+                    <p>Evento Click en Mapa</p>
+                    <!--Cuando hago zoom me centra en donde se encuentra el marcador-->
+                </div>
+
+
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa2"></div>
+                    <p>Regresar al centro</p>
+                    <!--Me regresa al centro-->
+                </div>
+            </div>
+            <hr>
+
+
+            <!--Defino otra fila en la que irán estos otros dos mapas-->
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa3"></div>
+                    <p>Obtener el nivel de zoom</p>
+                </div>
+
+
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa4"></div>
+                    <p>Colocar el marcador y mover al centro</p>
+                    <!--Establecer el marcador y mover al centro-->
+                </div>
+            </div>
+            <hr>
+
+            <!--Defino otra fila en la que irán estos otros dos mapas-->
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa5"></div>
+                    <p>obtiene coordenadas con mapMouseEvent</p>
+                    <!--me regresa las coordenadas en el InfoWindow-->
+                </div>
+
+
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa6"></div>
+                    <p>addDomListener - Mover mapa al centro</p>
+                    <!--Cuando de click en el botón realiza una acción (centrar el mapa en las coordenadas correspondientes)-->
+                    <button class="btn btn-outline-info" id="btnCentrar">Centrar en coordenadas</button>
+                </div>
+            </div>
+            <hr>
         </div>
-
-        <!--Defino una fila en la que irán estos dos mapas-->
-        <div class="row" >
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa1"></div>
-                <p>Evento Click en Mapa</p>
-                <!--Cuando hago zoom me centra en donde se encuentra el marcador-->
-            </div>
-
-
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa2"></div>
-                <p>Regresar al centro</p>
-                <!--Me regresa al centro-->
-            </div>
-        </div>
-        <hr>
-
-
-        <!--Defino otra fila en la que irán estos otros dos mapas-->
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa3"></div>
-                <p>Obtener el nivel de zoom</p>
-            </div>
-
-
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa4"></div>
-                <p>Colocar el marcador y mover al centro</p>
-                <!--Establecer el marcador y mover al centro-->
-            </div>
-        </div>
-        <hr>
-
-        <!--Defino otra fila en la que irán estos otros dos mapas-->
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa5"></div>
-                <p>obtiene coordenadas con mapMouseEvent</p>
-                <!--me regresa las coordenadas en el InfoWindow-->
-            </div>
-
-
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa6"></div>
-                <p>addDomListener - Mover mapa al centro</p>
-                <!--Cuando de click en el botón realiza una acción (centrar el mapa en las coordenadas correspondientes)-->
-                <button class="btn btn-outline-info" id="btnCentrar">Centrar en coordenadas</button>
-            </div>
-        </div>
-        <hr>
     </div>
 
     <script>
@@ -141,7 +143,7 @@
             });
             infowindow1.open(mapa3); //abre mi infoWindow en esas coordenadas
             mapa3.addListener('zoom_changed', function () {
-                infowindow1.setContent('Zoom:'+' ' + mapa3.getZoom() + '%'); //me regresa las coordenadas
+                infowindow1.setContent('Zoom:' + ' ' + mapa3.getZoom() + '%'); //me regresa las coordenadas
             });
 
 
@@ -163,7 +165,7 @@
 
             //Propiedades del mapa5
             var mapa5 = new google.maps.Map(document.getElementById('mapa5'), propiedades);
-           
+
             var infowindow = new google.maps.InfoWindow({ //me regresa las coordenadas en el InfoWindow
                 content: 'Haz click para obtener las coordenadas',
                 position: coordenadas
