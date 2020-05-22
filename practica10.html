@@ -26,20 +26,23 @@
 <body>
 
     <div class="container text-center small">
-        <div class="row m-2">
-            <div class="col-6">
-                <button class="btn btn-outline-success" id="boton">WatchPosition</button>
+        <div class="container bg-white rounded shadow-lg">
+            <div class="row m-2">
+                <div class="col-6">
+                    <button class="btn btn-outline-success" id="boton">WatchPosition</button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-outline-danger" id="botondetener">Detener watch</button>
+                </div>
             </div>
-            <div class="col-6">
-                <button class="btn btn-outline-danger" id="botondetener">Detener watch</button>
+            <div class="row m-2">
+                <div class="col-12" id="datos"></div>
             </div>
-        </div>
-        <div class="row m-2">
-            <div class="col-12" id="datos"></div>
-        </div>
-    </div>
 
-    <div id="map"></div>
+        </div>
+
+        <div id="map"></div>
+    </div>
 
     <script>
 
