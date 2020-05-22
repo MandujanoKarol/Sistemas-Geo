@@ -28,68 +28,70 @@
 
 <body>
     <div class="container-fluid m-2 text-center">
-        <!--Contenedor fluido para que ocupe toda la pantalla-->
-        <div class="row">
-            <div class="col-12">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <h2>Controles de mapa</h2>
+        <div class="container bg-white rounded shadow-lg">
+            <!--Contenedor fluido para que ocupe toda la pantalla-->
+            <div class="row">
+                <div class="col-12">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <h2>Controles de mapa</h2>
+                </div>
             </div>
+
+            <!--Defino una fila en la que irán estos dos mapas-->
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa1"></div>
+                    <p>Mapa con controles estándar</p>
+                </div>
+
+
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa2"></div>
+                    <p>Mapa sin controles</p>
+                    <!--Mapa limpio (sin controles)-->
+                </div>
+            </div>
+            <hr>
+
+            <!--Defino otra fila en la que irán estos otros dos mapas-->
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa3"></div>
+                    <p>Mapa con zoom desactivado</p>
+                </div>
+
+
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa4"></div>
+                    <p>Mapa con Control-Options</p>
+                    <!--Uso de DROPDOWN_MENU-->
+                </div>
+            </div>
+            <hr>
+
+            <!--Defino otra fila en la que irán estos otros dos mapas-->
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa5"></div>
+                    <p>Mapa con ControlPosition</p>
+                    <!--Establecemos nostros los controles y definimos la posición en la que queremos cada uno de los controles-->
+                </div>
+
+
+                <div class="col-12 col-md-6">
+                    <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
+                    <div id="mapa6"></div>
+                    <p>Mapa con Restricting MapBounds</p>
+                    <!--Restringir en cierta zona-->
+                </div>
+            </div>
+            <hr>
         </div>
-
-        <!--Defino una fila en la que irán estos dos mapas-->
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa1"></div>
-                <p>Mapa con controles estándar</p>
-            </div>
-
-
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa2"></div>
-                <p>Mapa sin controles</p>
-                <!--Mapa limpio (sin controles)-->
-            </div>
-        </div>
-        <hr>
-        
-        <!--Defino otra fila en la que irán estos otros dos mapas-->
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa3"></div>
-                <p>Mapa con zoom desactivado</p>
-            </div>
-
-
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa4"></div>
-                <p>Mapa con Control-Options</p>
-                <!--Uso de DROPDOWN_MENU-->
-            </div>
-        </div>
-        <hr>
-
-        <!--Defino otra fila en la que irán estos otros dos mapas-->
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa5"></div>
-                <p>Mapa con ControlPosition</p>
-                <!--Establecemos nostros los controles y definimos la posición en la que queremos cada uno de los controles-->
-            </div>
-
-
-            <div class="col-12 col-md-6">
-                <!--Establezco las columnas que voy a ocupar en los distintos dispositivos-->
-                <div id="mapa6"></div>
-                <p>Mapa con Restricting MapBounds</p>
-                <!--Restringir en cierta zona-->
-            </div>
-        </div> 
-        <hr>
     </div>
 
     <script>
@@ -134,9 +136,9 @@
                 center: coordenadas,
                 zoom: 12,
                 mapTypeControl: true, //por default es horizontal y aparece en la esquina izquierda
-                mapTypeControlOptions : {
-                    style : google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-                    mapTypeIds : [ 'roadmap', 'satellite', 'terrain']
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                    mapTypeIds: ['roadmap', 'satellite', 'terrain']
 
                 }
             };
@@ -149,19 +151,19 @@
                 center: coordenadas,
                 zoom: 12,
                 mapTypeControl: true, //por default es horizontal y aparece en la esquina izquierda
-                mapTypeControlOptions : {
-                    style : google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-                    position : google.maps.ControlPosition.TOP_CENTER //la barra horizontal la establezco en la parte de en medio
+                mapTypeControlOptions: {
+                    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+                    position: google.maps.ControlPosition.TOP_CENTER //la barra horizontal la establezco en la parte de en medio
                 },
 
                 zoomControl: true, //primero defino que el zoom está en true
                 zoomControlOptions: {
-                    position : google.maps.ControlPosition.LEFT_CENTER //establezco la barra de zoom en el centro a la izquierda
+                    position: google.maps.ControlPosition.LEFT_CENTER //establezco la barra de zoom en el centro a la izquierda
                 },
                 scaleControl: true, //defino que primero este en true
                 streetViewControl: true,
                 streetViewControlOptions: {
-                    position : google.maps.ControlPosition.LEFT_BOTTOM //establezco street view en la parte izquierda superior
+                    position: google.maps.ControlPosition.LEFT_BOTTOM //establezco street view en la parte izquierda superior
                 },
                 fullscreenControl: true //hacer pantalla completa
 
@@ -178,14 +180,14 @@
                 north: 21.390039, //latitud
                 south: 20.858414, //latitud
                 west: -102.149631, //longitud
-                east:  -101.092990 //longitud
+                east: -101.092990 //longitud
             }
 
             var propiedades6 = { //propiedades del mapa
                 center: coordenadas,
                 zoom: 12,
-                restriction:{
-                    latLngBounds : limites,
+                restriction: {
+                    latLngBounds: limites,
                     strictBounds: false
                 }
 
